@@ -12,6 +12,7 @@ import com.example.softwarelabassignment.model.response.ResetPasswordResponse
 import com.example.softwarelabassignment.model.response.VerifyOtpResponse
 import com.example.softwarelabassignment.model.response.login.LoginResponse
 import com.example.softwarelabassignment.model.response.signup.SignUpResponse
+import com.google.gson.Gson
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -22,28 +23,26 @@ class OnboardingRepository() {
 
     suspend fun login(loginData: LoginDataItem): Response<LoginResponse> {
 
-        val jsonParams: MutableMap<String?, Any?> = ArrayMap()
-
-        jsonParams["email"] = "johndoe@mail.com"
-        jsonParams["password"] = "12345678"
-        jsonParams["role"] = loginData.role
-        jsonParams["device_token"] = loginData.device_token
-        jsonParams["type"] = loginData.type
-        jsonParams["social_id"] = loginData.social_id
-
+        val gson = Gson()
+        val jsonString = gson.toJson(loginData)
         val body = RequestBody.create(
             "application/json; charset=utf-8".toMediaTypeOrNull(),
-            JSONObject(jsonParams).toString()
+            jsonString
         )
-
         return RetrofitInstance.api.loginApi(body)
 
     }
 
     suspend fun signUp(signUpData: SignUpDataItem): Response<SignUpResponse> {
-        val signup = signUpData.toString()
 
-        return RetrofitInstance.api.signUpApi(signup)
+        val gson = Gson()
+        val jsonString = gson.toJson(signUpData)
+
+        val body = RequestBody.create(
+            "application/json; charset=utf-8".toMediaTypeOrNull(),
+            jsonString
+        )
+        return RetrofitInstance.api.signUpApi(body)
 
     }
 

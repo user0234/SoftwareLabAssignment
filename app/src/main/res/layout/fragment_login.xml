@@ -108,7 +108,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/email_address"
                             android:textColorHint="@color/editTextHintColor"
-                            android:text="" />
+                            android:text="johndoe@mail.com" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,7 +155,7 @@
                             android:layout_height="wrap_content"
                             android:hint="@string/password"
                             android:textColorHint="@color/editTextHintColor"
-                            android:text="" />
+                            android:text="12345678" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

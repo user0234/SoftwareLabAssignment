@@ -7,7 +7,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.softwarelabassignment.R
+import com.example.softwarelabassignment.database.DayHourDataBase
 import com.example.softwarelabassignment.databinding.ActivityOnBoardingBinding
+import com.example.softwarelabassignment.repository.HourItemRepository
 import com.example.softwarelabassignment.repository.OnboardingRepository
 import com.example.softwarelabassignment.utils.observeEvent
 
@@ -23,8 +25,9 @@ class OnBoardingActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val repository = OnboardingRepository()
+        val hourRepo = HourItemRepository(DayHourDataBase.invoke(this)!!)
 
-        val viewModelProviderFactory = onBoardingViewModelFactory(application, repository)
+        val viewModelProviderFactory = onBoardingViewModelFactory(application, repository,hourRepo)
 
         viewModel =
             ViewModelProvider(this, viewModelProviderFactory)[OnBoardingViewModel::class.java]

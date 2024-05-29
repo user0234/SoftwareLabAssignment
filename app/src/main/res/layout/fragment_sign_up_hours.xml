@@ -20,33 +20,46 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonsCl"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/farmEatTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/FarmerEats"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toTopOf="@+id/step4Tv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
+                    android:id="@+id/step4Tv"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="65dp"
                     android:text="@string/signupStep4of4"
                     android:textColor="@color/editTextHintColor"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/businessHourTv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/farmEatTv" />
 
                 <TextView
+                    android:id="@+id/businessHourTv"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="@string/Business_Hours"
                     android:textSize="32sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/descriptionTv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/step4Tv" />
 
                 <TextView
                     android:id="@+id/descriptionTv"
@@ -56,7 +69,9 @@
                     android:text="@string/choose_the_hours_your_farm_is_open_for_pickups_this_will_allow_customers_to_order_deliveries"
                     android:textAlignment="center"
                     android:textColor="@color/editTextHintColor"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toTopOf="@+id/datePickerRv"
+                    app:layout_constraintTop_toBottomOf="@+id/businessHourTv" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/datePickerRv"
@@ -64,6 +79,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="48dp"
                     android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/timePickerRv"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionTv"
                     tools:itemCount="1"
                     tools:listitem="@layout/date_rv_list_item" />
 
@@ -74,11 +91,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="48dp"
                     android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/datePickerRv"
                     tools:itemCount="1"
                     tools:listitem="@layout/time_rv_list_item" />
 
 
-            </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout

@@ -57,6 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/verifyOtpFragment"
+
         android:name="com.example.softwarelabassignment.ui.fragment.VerifyOtpFragment"
         android:label="fragment_verify_otp"
         tools:layout="@layout/fragment_verify_otp" >

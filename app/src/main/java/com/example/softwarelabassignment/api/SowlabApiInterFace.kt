@@ -21,7 +21,7 @@ interface SowlabApiInterFace {
     @Headers("Content-Type: application/json")
     @POST("user/register")
     suspend fun signUpApi(
-        @Body rawBody: String
+        @Body rawBody: RequestBody
     ): Response<SignUpResponse>
 
     @Headers("Content-Type: application/json")

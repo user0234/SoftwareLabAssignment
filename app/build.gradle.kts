@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id ("androidx.navigation.safeargs.kotlin")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -60,6 +61,7 @@ dependencies {
     implementation( "com.squareup.okhttp3:logging-interceptor:4.5.0")
 
 
+
     implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
 
     // Coroutines
@@ -69,5 +71,15 @@ dependencies {
     // Coroutine Lifecycle Scopes
 
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+
+    // room database
+    val  room_version = "2.6.0"
+
+    implementation ("androidx.room:room-runtime:$room_version") // Room
+    implementation ("androidx.room:room-ktx:$room_version")
+    implementation ("androidx.room:room-common:2.6.1")
+    testImplementation ("androidx.room:room-testing:$room_version")
+    //noinspection KaptUsageInsteadOfKsp
+    kapt("androidx.room:room-compiler:$room_version")
 
 }

@@ -190,7 +190,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/email_address"
-                            android:text="gepaw93985@crodity.com"
                             android:textColorHint="@color/editTextHintColor" />
 
                     </com.google.android.material.textfield.TextInputLayout>

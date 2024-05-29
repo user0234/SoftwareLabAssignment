@@ -15,11 +15,16 @@ import com.example.softwarelabassignment.model.LoginDataItem
 import com.example.softwarelabassignment.model.ResetPassWordDataItem
 import com.example.softwarelabassignment.model.SignUpDataItem
 import com.example.softwarelabassignment.model.VerifyOtpDataItem
+import com.example.softwarelabassignment.model.hourModels.DayItemSelectedStatus
+import com.example.softwarelabassignment.model.hourModels.DaysDataItem
 import com.example.softwarelabassignment.model.response.ForgotPasswordResponse
 import com.example.softwarelabassignment.model.response.ResetPasswordResponse
 import com.example.softwarelabassignment.model.response.VerifyOtpResponse
 import com.example.softwarelabassignment.model.response.login.LoginResponse
 import com.example.softwarelabassignment.model.response.signup.SignUpResponse
+import com.example.softwarelabassignment.model.signUp.HourSelectedStatus
+import com.example.softwarelabassignment.model.signUp.HoursListItem
+import com.example.softwarelabassignment.repository.HourItemRepository
 import com.example.softwarelabassignment.repository.OnboardingRepository
 import com.example.softwarelabassignment.utils.AppApplicationClass
 import com.example.softwarelabassignment.utils.Event
@@ -27,12 +32,79 @@ import com.example.softwarelabassignment.utils.Resource
 import com.example.softwarelabassignment.utils.send
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 
 class OnBoardingViewModel(
     app: Application,
-    private val onBoardingRepository: OnboardingRepository
+    private val onBoardingRepository: OnboardingRepository,
+    private val hourRepository: HourItemRepository
 ) : AndroidViewModel(app) {
+
+    fun updateHourItem(hourItem: HoursListItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val dayitem = hourRepository.getDayItemFromId(hourItem.parentId)
+            dayitem.hourList.forEach {
+                if (it.id == hourItem.id) {
+                    it.selectStatus = if (it.selectStatus == HourSelectedStatus.Selected) {
+                        HourSelectedStatus.NotSelected
+                    } else {
+                        HourSelectedStatus.Selected
+                    }
+                }
+            }
+            Log.i("UpdateDatabase","DayItem - ${dayitem.toString()}")
+            addNewDayItem(dayitem)
+        }
+
+    }
+
+
+    // SignUpHourItem
+
+    fun addNewDayItem(item: DaysDataItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            hourRepository.addNewDay(item)
+        }
+    }
+
+    fun updateDayItem(item: DaysDataItem) {
+        // get All the items and set only current item as current and if any other one has current selected then make it yes
+        viewModelScope.launch(Dispatchers.IO) {
+
+            val items = hourRepository.getAllItemsOnce()
+
+            items.forEach {
+                if (it.selectedStatus == DayItemSelectedStatus.Current) {
+                    it.selectedStatus = DayItemSelectedStatus.Yse
+                }
+                if (it.id == item.id) {
+                    it.selectedStatus = DayItemSelectedStatus.Current
+                }
+            }
+
+            items.forEach {
+                hourRepository.addNewDay(it)
+            }
+
+
+        }
+    }
+
+    fun deleteDayItem(item: DaysDataItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            hourRepository.deleteDay(item)
+        }
+    }
+
+    fun deleteAllDayItem() {
+        viewModelScope.launch(Dispatchers.IO) {
+            hourRepository.deleteAll()
+        }
+    }
+
+    fun getAllDaysObservable() = hourRepository.getAllItems()
+
 
     private val loginData: LoginDataItem = LoginDataItem()
 
@@ -65,22 +137,27 @@ class OnBoardingViewModel(
             }
 
         } catch (t: Throwable) {
-            Log.i("ApiError","error - ${t.message} cause -${t.cause}")
-             t.printStackTrace()
+            Log.i("ApiError", "error - ${t.message} cause -${t.cause}")
+            t.printStackTrace()
             loginResponse.postValue(Resource.Error("an Error has occurred"))
         }
 
     }
 
     private fun handleLoginResponse(response: Response<LoginResponse>): Resource<LoginResponse> {
-        Log.i("apiResponse"," sucess - ${response.isSuccessful} login response body ${response.body()} ,login response raw - ${response.raw()}")
+        Log.i(
+            "apiResponse",
+            " sucess - ${response.isSuccessful} login response body ${response.body()} ,login response raw - ${response.raw()}"
+        )
 
         if (response.isSuccessful) {
-            if (response.body() != null && response.body()?.token != null) {
-                return Resource.Success(response.body())
+            return if (response.body() != null && response.body()?.success == true) {
+                Resource.Success(response.body())
+            }else{
+                Resource.Error(response.body()?.message?:"error occured")
             }
         }
-        return Resource.Error("error occurred - "+response.message())
+        return Resource.Error(response.message())
     }
 
 
@@ -123,7 +200,7 @@ class OnBoardingViewModel(
     }
 
     fun signUpStep3(
-        fileNames:Array<String>
+        fileNames: Array<String>
     ) {
         val fileName = fileNames.toString()
         signUpDataItem.apply {
@@ -163,8 +240,10 @@ class OnBoardingViewModel(
 
     private fun handleSignUpResponse(response: Response<SignUpResponse>): Resource<SignUpResponse> {
         if (response.isSuccessful) {
-            if (response.body() != null && response.body()?.token != null) {
-                return Resource.Success(response.body())
+            return if (response.body() != null && response.body()?.success == true) {
+                Resource.Success(response.body())
+            }else{
+                Resource.Error(response.body()?.message?:"error occured")
             }
         }
         return Resource.Error(response.message())
@@ -329,13 +408,20 @@ class OnBoardingViewModel(
         get() = _promptGetImage
 
 
-    fun startGetImage(request:ImageResponseDataItem) {
+    fun startGetImage(request: ImageResponseDataItem) {
         _promptGetImage.send(request)
     }
 
+    fun getAllDayItems(value:(List<DaysDataItem>) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val itemsList = hourRepository.getAllItemsOnce()
+              value(itemsList)
+        }
+    }
+
     data class ImageResponseDataItem(
-        var value:String,
-        var response:(String) -> Unit
+        var value: String,
+        var response: (String) -> Unit
     )
 
 }

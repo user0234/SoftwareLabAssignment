@@ -6,9 +6,7 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.softwarelabassignment.R
-import com.example.softwarelabassignment.databinding.DateRvListItemBinding
 import com.example.softwarelabassignment.databinding.TimeRvListItemBinding
-import com.example.softwarelabassignment.model.signUp.DaysListItem
 import com.example.softwarelabassignment.model.signUp.HoursListItem
 
 
@@ -55,23 +53,7 @@ class SignUpHoursListAdaptor :
     }
 
     override fun onBindViewHolder(holder: SignUpHoursViewHolder, position: Int) {
-        val binding = holder.binding
-        val item = differ.currentList[position]
 
-        binding.timeTextview.text = item.name
-
-        if(item.isSelected){
-            holder.binding.root.setBackgroundResource(R.drawable.day_yellow_rounded_background)
-
-        }else{
-            holder.binding.root.setBackgroundResource(R.drawable.day_grey_rounded_background)
-
-        }
-        binding.root.setOnClickListener {
-            onItemClickListener?.let {
-                it(position)
-            }
-        }
     }
 
     private var onItemClickListener: ((Int) -> Unit)? = null
