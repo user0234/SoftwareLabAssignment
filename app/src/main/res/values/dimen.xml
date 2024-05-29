@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="half_circular_background_radius">36dp</dimen>
+    <dimen name="edit_text_background_radius">18dp</dimen>
+    <dimen name="icon_background_radius">24dp</dimen>
+
+</resources>

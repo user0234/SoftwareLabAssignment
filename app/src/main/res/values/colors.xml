@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="orangeThemeColor">#D5715B</color>
+    <color name="editTextBackground">#14261C12</color>
+
+    <color name="transparent">#00FFFFFF</color>
+    <color name="iconStrokeColor">#14000000</color>
+    <color name="editTextHintColor">#4D000000</color>
+
+    <color name="daySelectedBackground">@color/orangeThemeColor</color>
+    <color name="dayHasTimeBackground">@color/editTextBackground</color>
+    <color name="dayDoNotHaveTimeBackground">#4D261C12</color>
+    <color name="dayHourYellowBackground">#F8C569</color>
+
+</resources>

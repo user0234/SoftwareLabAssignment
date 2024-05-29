@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">SoftwareLabAssignment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lorem1">Lorem.</string>
+    <string name="lorem3">Lorem ipsum dolor.</string>
+    <string name="lorem10">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis.</string>
+    <string name="lorem50">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum placerat sagittis metus quis luctus. Nulla facilisi. Nulla sollicitudin dolor a dolor dignissim sollicitudin. Aenean pharetra purus id neque sodales, eu tempor orci pellentesque. In rutrum ipsum enim, in aliquam tortor feugiat non. Nullam iaculis auctor turpis ac pharetra. Nullam id.</string>
+    <string name="FarmerEats">FarmerEats</string>
+    <string name="signupStep1of4">Signup 1 of 4</string>
+    <string name="signupStep2of4">Signup 2 of 4</string>
+    <string name="signupStep3of4">Signup 3 of 4</string>
+    <string name="signupStep4of4">Signup 4 of 4</string>
+
+
+    <string name="Welcomeback">Welcome back!</string>
+    <string name="Welcome">Welcome!</string>
+    <string name="FarmInfo">Farm Info</string>
+    <string name="Verification">Verification</string>
+    <string name="Business_Hours">Business Hours</string>
+
+    Business Hours
+
+    <string name="ForgotPassword">Forgot Password?</string>
+    <string name="resetPassword">Reset Password</string>
+
+    <string name="VerifyOTP">Verify OTP</string>
+
+    <string name="Newhere">New here ? </string>
+    <string name="Rememberyourpasword">Remember your pasword?</string>
+
+    <string name="Createaccount">Create account</string>
+    <string name="Forgot">Forgot?</string>
+    <string name="Login">Login</string>
+    <string name="orloginwith">or login with</string>
+    <string name="orSignUpWith">or signup with</string>
+    <string name="email_address">Email Address</string>
+    <string name="InformalName">Informal Name</string>
+
+    <string name="fullName">Full Name</string>
+    <string name="BusinessName">Business Name</string>
+
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="Street_Address">Street Address</string>
+
+    <string name="newPassword">New Password</string>
+    <string name="City">City</string>
+    <string name="State">State</string>
+    <string name="Enter_Zipcode">Enter Zipcode</string>
+
+    <string name="conformNewPassword">Confirm New Password</string>
+    <string name="ReenterPassword">Re-enter Password</string>
+
+    <string name="send_code">Send Code</string>
+    <string name="submit">Submit</string>
+
+    <string name="resend_code"><u>Resend Code</u></string>
+    <string name="continueString">Continue</string>
+    <string name="attached_proof_of_department_of_agriculture_registrations_i_e_florida_fresh_usda_approved_usda_organic">Attached proof of Department of Agriculture registrations i.e. Florida Fresh, USDA Approved, USDA Organic</string>
+    <string name="attach_proof_of_registration">Attach proof of registration</string>
+    <string name="choose_the_hours_your_farm_is_open_for_pickups_this_will_allow_customers_to_order_deliveries">Choose the hours your farm is open for pickups. This will allow customers to order deliveries.</string>
+    <string name="signup">Signup</string>
+    <string name="you_re_all_done">You’re all done!</string>
+    <string name="hang_tight_we_are_currently_reviewing_your_account_and_will_follow_up_with_you_in_2_3_business_days_in_the_meantime_you_can_setup_your_inventory">Hang tight! We are currently reviewing your account and will follow up with you in 2-3 business days. In the meantime, you can setup your inventory.</string>
+    <string name="got_it">Got it!</string>
+    <string name="you_are_logged">You are Logged In</string>
+    <string name="logout">Logout</string>
+    <string name="informal_name">Informal Name</string>
+
+</resources>
